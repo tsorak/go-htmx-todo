@@ -13,6 +13,8 @@ func router(w http.ResponseWriter, r *http.Request) {
 	switch route {
 	case "/":
 		routeRoot(w, r)
+	case "/motd":
+		routeMotd(w, r)
 	default:
 		routeNotFound(w, r)
 	}

@@ -1,3 +1,3 @@
 go 1.21
 
-module todo
+module github.com/tsorak/go-htmx-todo

@@ -6,10 +6,6 @@ import (
 
 func startWebserver() {
 	logServerAdress()
-	setupRoutes()
+	http.HandleFunc("/", router)
 	http.ListenAndServe(":8080", nil)
-}
-
-func setupRoutes() {
-	http.HandleFunc("/", routeRoot)
 }

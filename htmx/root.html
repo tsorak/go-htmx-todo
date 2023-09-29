@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTMX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+  </head>
+  <body class="dark:bg-neutral-900 dark:text-neutral-200">
+    <main>
+      <h1 class="text-4xl">Go HTMX</h1>
+      <button hx-get="/motd" hx-swap="outerHTML">Get MOTD</button>
+    </main>
+  </body>
+</html>

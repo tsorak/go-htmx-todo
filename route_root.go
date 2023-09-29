@@ -11,5 +11,7 @@ func routeRoot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Hello world!")
+	htmx, _ := getFileContents("htmx/root.html")
+
+	fmt.Fprint(w, htmx)
 }

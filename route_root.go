@@ -1,17 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 )
 
-func routeRoot(w http.ResponseWriter, r *http.Request) {
+func routeRoot(resp Responder, r *http.Request) {
 	if !accepts("text/html", r) {
-		w.WriteHeader(http.StatusUnavailableForLegalReasons)
+		resp.SetStatus(http.StatusNotAcceptable)
 		return
 	}
 
 	htmx, _ := getFileContents("htmx/root.html")
 
-	fmt.Fprint(w, htmx)
+	resp.SendBytes(htmx)
 }

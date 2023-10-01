@@ -1,25 +1,50 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 )
 
-func router(w http.ResponseWriter, r *http.Request) {
-	var route string = r.URL.Path
+func CreateRouter() Router {
+	rtr := Router{}
+	rtr._routes = make(map[string]func(Responder, *http.Request))
+	return rtr
+}
 
-	fmt.Println(route)
+type Router struct {
+	_routes map[string]func(Responder, *http.Request)
+}
 
-	switch route {
-	case "/":
-		routeRoot(w, r)
-	case "/motd":
-		routeMotd(w, r)
-	default:
-		routeNotFound(w, r)
+func (rtr Router) addRoute(method string, path string, handler func(Responder, *http.Request)) {
+	rtrKey := method + "_" + path
+
+	rtr._routes[rtrKey] = handler
+}
+
+func (rtr Router) GET(path string, handler func(Responder, *http.Request)) {
+	rtr.addRoute("GET", path, handler)
+}
+
+func (rtr Router) POST(path string, handler func(Responder, *http.Request)) {
+	rtr.addRoute("POST", path, handler)
+}
+
+func (rtr Router) RouteMatcher() func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		rtrKey := getRequestMethod(r) + "_" + r.URL.Path
+
+		handler, ok := rtr._routes[rtrKey]
+		if !ok {
+			http.NotFound(w, r)
+			return
+		}
+		handler(Responder{w}, r)
 	}
 }
 
-func routeNotFound(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusNotFound)
+func getRequestMethod(r *http.Request) string {
+	method := r.Method
+	if method == "" {
+		return "GET"
+	}
+	return method
 }

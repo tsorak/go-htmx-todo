@@ -74,3 +74,7 @@ func (db TodoDB) deleteTodoByID(id string) bool {
 
 	return true
 }
+
+func (db TodoDB) getTodoByID(id string) Todo {
+	return db._todos[id]
+}

@@ -32,6 +32,10 @@ func (rtr Router) DELETE(path string, handler func(Responder, *http.Request)) {
 	rtr.addRoute("DELETE", path, handler)
 }
 
+func (rtr Router) PATCH(path string, handler func(Responder, *http.Request)) {
+	rtr.addRoute("PATCH", path, handler)
+}
+
 func (rtr Router) RouteMatcher() func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		rtrKey := getRequestMethod(r) + "_" + r.URL.Path

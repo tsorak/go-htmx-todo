@@ -20,4 +20,5 @@ func setupRoutes(rtr *Router) {
 
 	rtr.POST("/todo", routeTodoAdd)
 	rtr.DELETE("/todo", routeTodoDelete)
+	rtr.PATCH("/todo", routeTodoDone)
 }

@@ -23,7 +23,7 @@ func routeRoot(resp Responder, r *http.Request) {
 			<main class="flex flex-col gap-2">
 				<h1 class="text-4xl">Go HTMX</h1>
 				` + todoForm() + `
-				<div id="todo-list">
+				<div id="todo-list" class="flex flex-wrap gap-2">
 				` + allTodosTags() + `
 				</div>
 			</main>

@@ -38,7 +38,7 @@ func (db TodoDB) getTodosSorted() []Todo {
 	for k := range db._todos {
 		sortedIds = append(sortedIds, k)
 	}
-	sort.Strings(sortedIds)
+	sort.Sort(sort.Reverse(sort.StringSlice(sortedIds)))
 
 	for _, k := range sortedIds {
 		todos = append(todos, db._todos[k])

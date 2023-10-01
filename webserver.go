@@ -18,5 +18,6 @@ func setupRoutes(rtr *Router) {
 	rtr.GET("/", routeRoot)
 	rtr.GET("/motd", routeMotd)
 
+	rtr.POST("/todo", routeTodoAdd)
 	rtr.DELETE("/todo", routeTodoDelete)
 }

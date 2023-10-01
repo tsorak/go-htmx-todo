@@ -1,0 +1,38 @@
+<form
+  hx-post="/todo"
+  hx-target="#todo-list"
+  hx-swap="afterbegin"
+  class="border rounded-lg p-2 max-w-sm"
+>
+  <h2 class="mb-1 pb-1 border-b">Add todo</h2>
+  <div class="flex flex-col gap-1">
+    <div class="flex flex-col">
+      <label for="todo-title" class="text-sm">Title</label>
+      <input
+        name="title"
+        id="todo-title"
+        type="text"
+        class="bg-transparent border rounded"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="todo-desc" class="text-sm">Description</label>
+      <input
+        name="desc"
+        id="todo-desc"
+        type="text"
+        class="bg-transparent border rounded"
+      />
+    </div>
+    <div class="flex gap-2">
+      <label for="todo-done" class="text-sm">Done</label>
+      <input
+        name="done"
+        id="todo-done"
+        type="checkbox"
+        class="bg-transparent border rounded"
+      />
+    </div>
+    <input type="submit" value="Add" />
+  </div>
+</form>
